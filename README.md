@@ -1,4 +1,3 @@
 # Welcome to my Github pages
 
-This page has been built with ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)(cra)
-and :cloud: Groom IDE
+This page has been built with [React.js](https://reactjs.org/)(cra) [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/react) and Groom :cloud: IDE
