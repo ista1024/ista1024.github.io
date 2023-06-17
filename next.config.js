@@ -5,9 +5,12 @@
  **/
 const nextConfig = {
   output: 'export',
-  basePath: '/gh-pages-test',
+  basePath: '/sta1024.github.io',
   experimental: {
     appDir: true,
+  },
+  images: {
+    unoptimized: true,
   },
 }
 
