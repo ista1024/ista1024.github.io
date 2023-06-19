@@ -5,7 +5,7 @@
  **/
 const nextConfig = {
   output: 'export',
-  basePath: '/sta1024.github.io',
+  basePath: '/',
   experimental: {
     appDir: true,
   },
