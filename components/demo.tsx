@@ -139,11 +139,18 @@ const Demo = () => {
             priority
           />
         ) : error ? (
+          /**
+           * At this point, it could be an error from the server (FetchBaseQueryError)
+           * or just any error thrown by code you wrote (SerializedError, e.g. in query, queryFn, transformResponse etc.)
+           *  - and that could have a completely different shape.
+           * https://stackoverflow.com/questions/70017789/react-redux-how-to-handle-errors-in-rtk-queries-mutation-typescript
+           */
           <p className="font-inter font-bold text-black text-center">
             {`Well, that wasn't suppoered to happen...`}
             <br />
             <span className="font-satoshi font-normal text-gray-700">
-              {error?.data?.error}
+              {/* TypeScript will handle it as `FetchBaseQueryError` from now on. */}
+              {"data" in error && error?.data?.message}
             </span>
           </p>
         ) : (
