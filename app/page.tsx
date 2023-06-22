@@ -7,9 +7,8 @@ export default function Home() {
         <div className="gradient" />
       </div>
       <div className="app">
-        <h1 className="text-3xl font-bold underline">Hello World. </h1>
-        <Link href="/about">About</Link>
-        <Link href="/aisummarizer">Ai-summarizer</Link>
+        <h1 className="text-6xl font-bold">Welcome!</h1>
+        <p className='mt-2'>I'm </p>
       </div>
     </main>
   )

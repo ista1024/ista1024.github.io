@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google'
 import { Provider } from 'react-redux'
 import { store } from '@/services/store'
 import { ThemeProvider } from "@/components/theme-provider"
+import Navbar from './Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,7 +19,10 @@ export default function RootLayout({
       <body>
         <Provider store={store}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
+            <div className="contents">
+              <Navbar />
+              {children}
+            </div>
           </ThemeProvider>
         </Provider>
       </body>
