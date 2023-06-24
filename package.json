@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "deploy": "next build  && echo.> out/.nojekyll && git add out/ && git commit -m \"Deploy\" && git subtree push --prefix out origin gh-pages && rd -r out"
+    "deploy": "next build && echo.> out/.nojekyll && deploy.bat && cd ../ista1024.github.io-deploy && git add . && git commit -m \"Deploy\" && git push"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
