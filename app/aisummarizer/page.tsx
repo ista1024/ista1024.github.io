@@ -6,10 +6,7 @@ import Hero from '@/components/hero'
 export default function Aisummarizer() {
   return (
     <div>
-      <div className="main">
-        <div className="gradient" />
-      </div>
-      <div className="app">
+      <div className="contents">
         <Hero />
         <Demo />
       </div>
