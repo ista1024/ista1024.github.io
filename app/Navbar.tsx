@@ -4,9 +4,8 @@ export default function Navbar() {
   return (
     <div className="flex justify-between items-center bg-opacity-0">
       <div>
-        <h1 className="text-3xl font-bold">Hello World.</h1>
       </div>
-      <div>
+      <div className="m-2">
         <Link className="mx-4" href="/">Home</Link>
         <Link className="mx-4" href="/aisummarizer">Ai-summarizer</Link>
         <Link className="mx-4" href="/about">About</Link>
