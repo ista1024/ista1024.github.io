@@ -50,8 +50,8 @@ const Demo = () => {
   }
 
   return (
-    <section className="mt-16 w-full max-w-xl">
-      <div className="flex flex-col w-full gap-2">
+    <section className="mt-16 w-full flex flex-col justify-center items-center">
+      <div className="flex flex-col w-full gap-2 max-w-xl">
         <div>
           <input
             className="url_input"
@@ -120,7 +120,7 @@ const Demo = () => {
                   priority
                 />
               </div>
-              <p className="flex-1 font-satoshi text-blue-700 font-medium text-sm truncate">
+              <p className="flex-1 text-blue-700 font-medium text-sm truncate">
                 {item.url}
               </p>
             </div>
@@ -128,7 +128,7 @@ const Demo = () => {
         </div>
       </div>
       {/* Display Result */}
-      <div className="my-10 max-w-full flex justify-center items-center">
+      <div className="m-10 max-w-xl flex justify-center items-center">
         {isFetching ? (
           <Image
             className="w-20 h-20 object-contain"
@@ -148,7 +148,7 @@ const Demo = () => {
           <p className="font-inter font-bold text-black text-center">
             {`Well, that wasn't suppoered to happen...`}
             <br />
-            <span className="font-satoshi font-normal text-gray-700">
+            <span className="font-normal text-gray-700">
               {/* TypeScript will handle it as `FetchBaseQueryError` from now on. */}
               {"data" in error && error?.data?.message}
             </span>
@@ -156,12 +156,12 @@ const Demo = () => {
         ) : (
           article?.summary && (
             <div className="flex flex-col gap-3">
-              <h2 className="font-satoshi font-bold text-gray-600 text-lx">
+              <h2 className="font-bold text-gray-600 dark:text-gray-200 text-lx">
                 {`Article `}
                 <span className="blue_gradient">Summary</span>
               </h2>
               <div className="summary_box">
-                <p className="font-inter font-medium text-sm text-gray-700">
+                <p className="font-inter font-medium text-sm text-gray-700 dark:text-gray-300">
                   {article?.summary || ''}
                 </p>
               </div>

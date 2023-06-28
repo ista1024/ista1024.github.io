@@ -13,13 +13,6 @@ const Hero = () => {
           height={37}
           priority
         />
-        <button
-          type="button"
-          onClick={() => window.open("https://github.com/ista1024")}
-          className="black_btn"
-        >
-          Github
-        </button>
       </nav>
       <h1 className="head_text">
         Summarize Articles with
