@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Provider store={store}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <div className="app">
               <Navbar />
               {children}
