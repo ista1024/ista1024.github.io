@@ -1,10 +1,8 @@
-"use client";
+"use client"
 
 import '@/styles/globals.css'
 import { Inter } from 'next/font/google'
-import { Provider } from 'react-redux'
-import { store } from '@/services/store'
-import { ThemeProvider } from "@/components/theme-provider"
+import { Providers } from "./providers"
 import Navbar from './Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -15,16 +13,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <Provider store={store}>
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-            <div className="app">
-              <Navbar />
-              {children}
-            </div>
-          </ThemeProvider>
-        </Provider>
+        <Providers>
+          <div className="app transition-all">
+            <Navbar />
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   )
