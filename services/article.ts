@@ -1,3 +1,5 @@
+"use client";
+
 import { BaseQueryFn, FetchArgs, createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 /**

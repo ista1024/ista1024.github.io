@@ -1,3 +1,5 @@
+"use client";
+
 import { configureStore } from "@reduxjs/toolkit";
 import { articleApi } from "@/services/article"
 
