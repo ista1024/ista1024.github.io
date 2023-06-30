@@ -4,16 +4,6 @@ import Image from "next/image"
 const Hero = () => {
   return (
     <header className="w-full flex jusify-center items-center flex-col">
-      <nav className="flex justify-between items-center w-full mb-10 pt-3">
-        <Image
-          className="w-28 object-contain"
-          src="/logo.svg"
-          alt="sumz_logo"
-          width={28}
-          height={37}
-          priority
-        />
-      </nav>
       <h1 className="head_text">
         Summarize Articles with
         <br className="max-md:hedden" />
