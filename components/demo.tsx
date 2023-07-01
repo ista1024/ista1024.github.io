@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { useLazyGetSummaryQuery } from "@/services/article";
+import useLocalStorage from "@/hooks/useLocalStorage";
 
 type Article = {
   url: string,
@@ -15,17 +16,16 @@ const Demo = () => {
     url: '',
     summary: ''
   })
+  const [articles, setArticles] = useLocalStorage<Article[]>('articles', [])
+  // Keep allArticles for avoid hydration mismatch.
   const [allArticles, setAllArticles] = useState<Article[]>([])
   const [copied, setCopied] = useState('')
   const [rapidApiKey, setRapidApiKey] = useState(envRapidApiKey)
   const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery()
 
   useEffect(() => {
-    const articles = localStorage.getItem('articles')
-    if (articles) {
-      const articlesFromLocalStorage = JSON.parse(articles)
-      setAllArticles(articlesFromLocalStorage)
-    }
+    // To avoid hydration mismatch, set articles in useEffect.
+    setAllArticles(articles)
   }, [])
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
@@ -38,8 +38,7 @@ const Demo = () => {
 
       setArticle(newArticle)
       setAllArticles(updatedAllArticle)
-
-      localStorage.setItem('articles', JSON.stringify(updatedAllArticle))
+      setArticles(updatedAllArticle)
     }
   }
 
