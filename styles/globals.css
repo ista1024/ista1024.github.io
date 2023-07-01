@@ -27,7 +27,7 @@
 }
 
 .desc {
-  @apply text-lg text-gray-600 dark:text-gray-200 sm:text-xl text-center max-w-2xl;
+  @apply text-lg text-gray-800 dark:text-gray-200 sm:text-xl max-w-2xl;
 }
 
 .url_input {

@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <main>
       <div className="contents">
-        <div className="flex flex-col justify-center items-center m-2">
+        <div className="flex flex-col justify-center items-center">
           <h1 className="head_text">Welcome!</h1>
           <p className='desc mt-5'>
             I'm a
