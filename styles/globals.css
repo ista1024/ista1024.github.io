@@ -19,7 +19,7 @@
 }
 
 .head_text {
-  @apply mt-5 text-5xl font-extrabold leading-[1.15] sm:text-6xl text-center;
+  @apply text-5xl font-extrabold leading-[1.15] sm:text-6xl text-center;
 }
 
 .orange_gradient {
@@ -27,7 +27,7 @@
 }
 
 .desc {
-  @apply mt-5 text-lg text-gray-600 dark:text-gray-200 sm:text-xl text-center max-w-2xl;
+  @apply text-lg text-gray-600 dark:text-gray-200 sm:text-xl text-center max-w-2xl;
 }
 
 .url_input {

@@ -53,14 +53,14 @@ export default function Home() {
     <main>
       <div className="contents">
         <div className="flex flex-col justify-center items-center m-2">
-          <h1 className="text-6xl font-bold">Welcome!</h1>
-          <p className='text-l mt-4'>
+          <h1 className="head_text">Welcome!</h1>
+          <p className='desc mt-5'>
             I'm a
           </p>
           <h6 className="hash-text text-xl font-bold my-2">
             #{words[currentWordIndex].substring(0, currentOffset)}
           </h6>
-          <p className='text-l'>
+          <p className='desc'>
             JavaScript Developer!
           </p>
         </div>
