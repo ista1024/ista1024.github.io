@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import '@/styles/hero.css';
 
 export default function Home() {
   const words = ["Positive", "Proactive", "Challenging"];
