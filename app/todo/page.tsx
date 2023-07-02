@@ -30,20 +30,24 @@ export default function Home() {
 
   const [newTitle, setNewTitle] = useState("")
   const [newCategory, setNewCategory] = useState("")
+  const [currentCategory, setCurrentCategory] = useState("")
+  const [categories, setCategories] = useState<string[]>([])
   const [todos, setTodos] = useState<Todo[]>(testTodos)
 
   const createTodo = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (newTitle?.trim() === '') return;
-    setTodos([...todos,
-    {
-      id: crypto.randomUUID(),
-      category: newCategory,
-      title: newTitle,
-      completed: false,
-      date: Date.now().toString()
-    }
-    ]);
+    setTodos(currentTodos => {
+      return [...currentTodos,
+      {
+        id: crypto.randomUUID(),
+        category: newCategory,
+        title: newTitle,
+        completed: false,
+        date: Date.now().toString()
+      }
+      ]
+    });
     setNewTitle("")
     setNewCategory("")
   };
@@ -72,16 +76,17 @@ export default function Home() {
         </div>
         <div className="flex flex-col w-full justify-start items-start mt-5">
           <div className="w-full flex flex-row justify-between items-center">
-            <div className="justify-between items-center sm:mr-3 mr-1">
+            <label className="justify-between items-center sm:mr-3 mr-1">
               <select
                 onChange={(e) => setNewCategory(e.target.value)}
                 className=" appearance-none md:w-48 w-16 bg-gray-100 border border-gray-200 text-gray-700 p-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               >
-                <option>New Mexico</option>
-                <option>Missouri</option>
-                <option>Texas</option>
+                <option value="" selected={currentCategory === ""} >Category</option>
+                {categories.length > 0 && categories.map(category => {
+                  return <option value={category}>{category}</option>
+                })}
               </select>
-            </div>
+            </label>
             <div className="flex flex-1 flex-row justify-between items-center gap-3">
               <input
                 type="text"
@@ -115,8 +120,8 @@ export default function Home() {
                 custom categories
               </p>
             </div>
-            <div className="flex-1 w-64 justify-start items-start">
-              {todos.length > 0 && todos.map(todo => {
+            <div className="flex-1 w-full justify-start items-start">
+              {todos.length > 0 ? todos.map(todo => {
                 const now = Date.now().toString()
                 return (
                   <li
@@ -134,17 +139,12 @@ export default function Home() {
                     ><FaX /></button>
                   </li>
                 )
-              })}
-              <li className="list-none flex justify-start items-center my-2 gap-2">
-                <label>
-                  <input type="checkbox" />
-                  {/* {title} */}
-                </label>
-                <button><FaX /></button>
-              </li>
-              <p className="desc">
-                todo list
-              </p>
+              }) : (
+                <p className="desc ">
+                  Todo list is empty, let's create a new one!
+                </p>
+              )
+              }
             </div>
           </div>
         </div>
