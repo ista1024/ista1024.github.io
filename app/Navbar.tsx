@@ -12,8 +12,9 @@ export default function Navbar() {
       <div className="m-2 flex flex-row">
         <Link className="px-2 py-2 hover:shadow-lg " href="/">Home</Link>
         <Link className="px-2 py-2 hover:shadow-lg " href="/aisummarizer">Ai-summarizer</Link>
+        <Link className="px-2 py-2 hover:shadow-lg " href="/todo">todo</Link>
         <Link className="px-2 py-2 hover:shadow-lg " href="/about">About</Link>
-        <a className="px-2 py-2 hover:shadow-lg " href="https://github.com/ista1024" target="blank">Github</a>
+        {/* <a className="px-2 py-2 hover:shadow-lg " href="https://github.com/ista1024" target="blank">Github</a> */}
         <ThemeSwitch />
       </div>
     </div>
