@@ -34,8 +34,7 @@ export default function Home() {
   const [categories, setCategories] = useState<string[]>([])
   const [todos, setTodos] = useState<Todo[]>(testTodos)
 
-  const createTodo = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const createTodo = () => {
     if (newTitle?.trim() === '') return;
     setTodos(currentTodos => {
       return [...currentTodos,
@@ -79,9 +78,10 @@ export default function Home() {
             <label className="justify-between items-center sm:mr-3 mr-1">
               <select
                 onChange={(e) => setNewCategory(e.target.value)}
+                value={currentCategory}
                 className=" appearance-none md:w-48 w-16 bg-gray-100 border border-gray-200 text-gray-700 p-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               >
-                <option value="" selected={currentCategory === ""} >Category</option>
+                <option value="">Category</option>
                 {categories.length > 0 && categories.map(category => {
                   return <option value={category}>{category}</option>
                 })}
@@ -93,10 +93,19 @@ export default function Home() {
                 placeholder="To do"
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
+                onKeyDown={e => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    createTodo();
+                  }
+                }}
                 className="appearance-none w-full bg-gray-100 text-gray-700 border focus:border-red-500 rounded p-2 sm:mr-4 mr-1 leading-tight focus:outline-none focus:bg-white"
               />
               <button
-                onClick={(e) => createTodo(e)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  createTodo();
+                }}
               >
                 <FaPlus />
               </button>
@@ -128,9 +137,12 @@ export default function Home() {
                     key={todo?.id + now}
                     className="list-none flex justify-start items-center my-2 gap-2"
                   >
-                    <label className="flex justify-start items-center gap-2">
-                      <input type="checkbox" checked={todo?.completed}
-                        onChange={e => toggleTodo(todo.id, e.target.checked)} />
+                    <label className={(todo?.completed ? " line-through text-gray-500 " : " ") + "flex justify-start items-center gap-2"}>
+                      <input
+                        type="checkbox"
+                        checked={todo?.completed}
+                        onChange={e => toggleTodo(todo.id, e.target.checked)}
+                      />
                       {todo?.title}
                     </label>
                     <button
