@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useLocalStorage from "@/hooks/useLocalStorage";
 import { FaGear, FaPlus, FaX } from "react-icons/fa6";
 
 type Todo = {
@@ -28,24 +29,33 @@ export default function Home() {
     date: ""
   }
 
-  const [newTitle, setNewTitle] = useState("")
-  const [newCategory, setNewCategory] = useState("")
-  const [currentCategory, setCurrentCategory] = useState("")
-  const [categories, setCategories] = useState<string[]>([])
-  const [todos, setTodos] = useState<Todo[]>(testTodos)
+  const [isLoading, setIsLoading] = useState(true); // new todo title state
+  const [newTitle, setNewTitle] = useState(""); // new todo title state
+  const [newCategory, setNewCategory] = useState("");// new todo category state
+  const [currentCategory, setCurrentCategory] = useState(""); // currently selected category
+  const [categories, setCategories] = useState<string[]>([]); // category list
+  const [todos, setTodos] = useState<Todo[]>([]); // todo list
+  const [storedTodos, setStoredTodos] = useLocalStorage<Todo[]>('todos', [])
+
+  useEffect(() => {
+    setTodos(storedTodos);
+    setIsLoading(false);
+  }, [])
+
+  useEffect(() => {
+    setStoredTodos(todos)
+  }, [todos])
 
   const createTodo = () => {
     if (newTitle?.trim() === '') return;
     setTodos(currentTodos => {
-      return [...currentTodos,
-      {
+      return [...currentTodos, {
         id: crypto.randomUUID(),
         category: newCategory,
         title: newTitle,
         completed: false,
         date: Date.now().toString()
-      }
-      ]
+      }]
     });
     setNewTitle("")
     setNewCategory("")
@@ -151,12 +161,15 @@ export default function Home() {
                     ><FaX /></button>
                   </li>
                 )
-              }) : (
+              }) : !isLoading ? (
                 <p className="desc ">
                   Todo list is empty, let's create a new one!
                 </p>
-              )
-              }
+              ) : (
+                <p className="desc ">
+                  Loading...
+                </p>
+              )}
             </div>
           </div>
         </div>
