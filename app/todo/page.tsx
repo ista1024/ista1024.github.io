@@ -10,30 +10,18 @@ type Todo = {
   title: string,
   completed: boolean,
   date: string
+  parentId: string | undefined,
 }
 
 const now = Date.now().toString();
 
-const testTodos = [
-  { id: '1', category: 'today', title: 'Learn React', completed: false, date: now },
-  { id: '2', category: 'today', title: 'Build a project', completed: true, date: now },
-  { id: '3', category: 'today', title: 'Deploy to production', completed: false, date: now }
-]
-
 export default function Home() {
-  const initialState = {
-    id: "",
-    category: "",
-    title: "",
-    completed: false,
-    date: ""
-  }
 
   const [isLoading, setIsLoading] = useState(true); // new todo title state
   const [newTitle, setNewTitle] = useState(""); // new todo title state
   const [newCategory, setNewCategory] = useState("");// new todo category state
   const [currentCategory, setCurrentCategory] = useState(""); // currently selected category
-  const [categories, setCategories] = useState<string[]>([]); // category list
+  const [categories, setCategories] = useState<string[]>(["uncategorized"]); // category list
   const [todos, setTodos] = useState<Todo[]>([]); // todo list
   const [storedTodos, setStoredTodos] = useLocalStorage<Todo[]>('todos', [])
 
@@ -54,7 +42,8 @@ export default function Home() {
         category: newCategory,
         title: newTitle,
         completed: false,
-        date: Date.now().toString()
+        date: Date.now().toString(),
+        parentId: ""
       }]
     });
     setNewTitle("")
@@ -67,8 +56,8 @@ export default function Home() {
 
   const toggleTodo = (id: string, completed: boolean) => {
     setTodos(currentTodos => {
-      return currentTodos.map(todo => {
-        if (todo.id === id) {
+      return currentTodos?.map(todo => {
+        if (todo?.id === id) {
           return { ...todo, completed };
         };
         return todo;
@@ -89,11 +78,11 @@ export default function Home() {
               <select
                 onChange={(e) => setNewCategory(e.target.value)}
                 value={currentCategory}
-                className=" appearance-none md:w-48 w-16 bg-gray-100 border border-gray-200 text-gray-700 p-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none md:w-48 w-16 bg-gray-100 border border-gray-200 text-gray-700 p-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               >
                 <option value="">Category</option>
-                {categories.length > 0 && categories.map(category => {
-                  return <option value={category}>{category}</option>
+                {categories?.length > 0 && categories?.map((category, idx) => {
+                  return <option value={category} key={category + idx?.toString()}>{category}</option>
                 })}
               </select>
             </label>
@@ -132,22 +121,40 @@ export default function Home() {
               <input
                 className="appearance-none w-full bg-gray-100 text-gray-700 border rounded p-2 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="Search"
               />
-              <p className="desc ">
-                today
-              </p>
-              <p className="desc text-ellipsis overflow-hidden ">
-                custom categories
-              </p>
+              <div className="mt-2">
+                <p className="desc text-ellipsis overflow-hidden ">
+                  custom categories
+                </p>
+                {categories?.length > 0 && categories?.map(category => {
+                  return (
+                    <li
+                      key={category + now}
+                      className="list-none flex justify-start items-center my-2 gap-2"
+                    >
+                      <button
+                        onClick={() => setCurrentCategory(category)}
+                        className="btn btn-danger"
+                      >
+                        <p className="desc ">
+                          {category}
+                        </p>
+                      </button>
+                    </li>
+                  )
+                })}
+              </div>
             </div>
             <div className="flex-1 w-full justify-start items-start">
-              {todos.length > 0 ? todos.map(todo => {
-                const now = Date.now().toString()
+              <p className="desc ">
+                {currentCategory}
+              </p>
+              {todos?.length > 0 ? todos?.map((todo, idx) => {
                 return (
                   <li
-                    key={todo?.id + now}
+                    key={todo?.id + idx?.toString()}
                     className="list-none flex justify-start items-center my-2 gap-2"
                   >
-                    <label className={(todo?.completed ? " line-through text-gray-500 " : " ") + "flex justify-start items-center gap-2"}>
+                    <label className={(todo?.completed ? " line-through text-gray-500 " : " ") + " flex justify-start items-center gap-2"}>
                       <input
                         type="checkbox"
                         checked={todo?.completed}
@@ -173,7 +180,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </div >
     </main >
   )
 }
