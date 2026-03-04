@@ -137,7 +137,7 @@ export default function About() {
                   {stack.items.map((item, itemIdx) => (
                     <div
                       key={itemIdx}
-                      className="group flex items-start gap-4 p-6 rounded-xl border-black/10 transition-all duration-300 dark:border-white/10 dark:bg-gradient-to-b dark:from-white/5 dark:to-transparent border dark:border-white/10 hover:border-blue-500/30 hover:-translate-y-1"
+                      className="group flex items-start gap-4 p-6 rounded-xl border-black/10 transition-all duration-300 dark:bg-gradient-to-b dark:from-white/5 dark:to-transparent border dark:border-white/10 hover:border-blue-500/30 hover:-translate-y-1"
                     >
                       <div className="mt-1 text-muted-foreground/80 transition-all duration-300 group-hover:text-blue-400 group-hover:scale-110">
                         {item.icon}
