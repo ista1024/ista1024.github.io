@@ -1,16 +1,16 @@
-"use client"
+import '@/styles/globals.css';
+import { Inter } from 'next/font/google';
+import { Providers } from "./providers";
+import Navbar from "./navber";
+import Footer from "./footer";
+import { Toaster } from 'sonner';
 
-import '@/styles/globals.css'
-import { Inter } from 'next/font/google'
-import { Providers } from "./providers"
-import Navbar from './Navbar'
-
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -19,9 +19,11 @@ export default function RootLayout({
           <div className="app transition-all">
             <Navbar />
             {children}
+            <Footer />
           </div>
+          <Toaster />
         </Providers>
       </body>
     </html>
-  )
+  );
 }
