@@ -2,24 +2,140 @@
 @tailwind components;
 @tailwind utilities;
 
+/* layer start */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 216 34% 17%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+/* scrollbar
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+*/
+/* For IE, Edge and Firefox */
+/* scrollbar
+.scrollbar-hide {
+    -ms-overflow-style: none;  // IE and Edge
+    scrollbar-width: none;  // Firefox
+}
+*/
+
+/* layer end */
+
 @media screen and (max-width: 640px) {
-  .contents {
+  .container {
     padding: 0;
   }
 }
 
 /* Tailwind Styles */
 
-.app {
-  @apply bg-white dark:bg-slate-800 w-screen min-h-screen justify-center
+body {
 }
 
-.contents {
-  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+.app {
+  @apply flex flex-col items-center w-full h-full min-h-screen px-5 md:px-10 lg:px-20 pt-5 sm:pt-10 
+}
+
+nav, main, footer {
+ @apply max-w-screen-xl w-full
+}
+
+main {
+  flex: 1;
+}
+
+button, textarea, input, select, a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container {
+  @apply relative z-10 flex items-center flex-col max-w-7xl mx-auto ;
 }
 
 .head_text {
-  @apply text-5xl font-extrabold leading-[1.15] sm:text-6xl text-center;
+  @apply text-4xl font-extrabold text-center tracking-tight;
 }
 
 .orange_gradient {
@@ -27,7 +143,11 @@
 }
 
 .desc {
-  @apply text-lg text-gray-800 dark:text-gray-200 sm:text-xl max-w-2xl;
+  @apply text-lg text-gray-600 dark:text-gray-400 sm:text-xl max-w-3xl text-center;
+}
+
+.input {
+  @apply block w-full rounded-md border border-gray-200 dark:border-gray-600 p-3 text-sm shadow-lg font-medium focus:border-black focus:dark:border-white focus:outline-none ;
 }
 
 .url_input {
@@ -67,6 +187,10 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: textclip 2s linear infinite;
+}
+
+.bg {
+  @apply bg-white dark:bg-slate-800
 }
 
 @keyframes textclip {
