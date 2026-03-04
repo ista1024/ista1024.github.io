@@ -3,9 +3,7 @@
  **/
 const nextConfig = {
   output: 'export',
-  experimental: {
-    appDir: true,
-  },
+  experimental: {},
   images: {
     unoptimized: true,
   },
